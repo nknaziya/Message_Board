@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MessageBoard</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+
+    <div class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <%= link_to "Message Board", root_path, class: "navbar-brand" %>
+    </div>
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Sign Up",new_model_registration_path %></li>
+      <% if model_signed_in? %>
+      <li><%= link_to "Sign out", destroy_model_session_path, method: :delete%></li>
+
+      <% else %>
+      <li><%= link_to "Log In", new_model_session_path %></li>
+
+      <% end %>
+    </ul>
+    <% if model_signed_in? %>
+      <p><%= link_to "New Message", new_message_path, class: "navbar-right navbar-text navbar-link" %>
+    <% end %>
+
+    </div>
+    </div>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+    
+    <div class="container"> 
+    <%= yield %>
+    </div>
+  </body>
+</html>

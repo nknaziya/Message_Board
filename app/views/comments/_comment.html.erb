@@ -1,0 +1,13 @@
+<div class="comment">
+	<p class="comment-content"><%= comment.content %></p>
+	<p class="comment-posted-by">Posted by <%= comment.model.email %> <%= time_ago_in_words(comment.created_at) %>ago</p>
+	<div class="links">
+		<% if model_signed_in? %>
+			<% if comment.model.id == current_model.id %>
+				<%= link_to "Edit", edit_message_comment_path(comment.message, comment) %>
+
+				<%= button_to "delete", message_comment_path(comment.message, comment), method: :delete, data: { confrim: "Are you sure?"} %>
+			<% end %>
+		<% end %>
+	</div>
+</div>
